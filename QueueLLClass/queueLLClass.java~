@@ -1,0 +1,19 @@
+import java.util.*;
+
+public class queueLLClass
+{
+  LinkedList ll = new LinkedList();
+  public queueLLClass()
+  {
+  }
+  
+  public Object peek()
+  {
+    
+  }
+  
+  public void enqueue(String s)
+  {
+    ll.addLast(s);
+  }
+}

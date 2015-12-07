@@ -1,0 +1,23 @@
+public class StackLLTester {
+
+ public static void main(String[] args) throws QueueException {
+   
+  StackImplementation q = new StackImplementation();
+  
+  q.push("TEST");
+  q.push("maybe");
+  q.push("lets");
+  q.push("see");
+  q.push("grwqer");
+  q.push("what?");
+  q.push("pooo");
+  
+  //q.display();
+  System.out.println(q.pop());
+  System.out.println();
+  //q.dequeueAll();
+  q.display();
+
+ }
+
+}

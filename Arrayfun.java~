@@ -1,0 +1,73 @@
+public class Arrayfun
+{
+  private int [] sortedArray;
+  private int desiredNumber;
+  
+  public Arrayfun( int [] Array, int num)
+  {
+    desiredNumber = num;
+    sortedArray = new int[Array.length];
+    
+    for(int i=0; i<sortedArray.length; i++)
+    {
+      sortedArray[i] = Array[i];
+    }
+    
+    sortArray();
+  }
+  
+  private void sortArray()
+  {
+    int tempVal =0;
+    
+    for(int i=0; i<sortedArray.length;i++)
+    {
+      for(int l=0;l<sortedArray.length;l++)
+      {
+        if(sortedArray[i] < sortedArray[l])
+        {
+          tempVal = sortedArray[i];
+          sortedArray[i] = sortedArray[l];
+          sortedArray[l] = tempVal;
+        }
+      }
+    }
+    //printArray();
+    binarySearch();
+  }
+  
+  private void binarySearch()
+  {
+    for(int i=sortedArray.length/2; i<sortedArray.length;)
+    {
+      if(desiredNumber == sortedArray[i])
+      {
+        System.out.println("The Desired number " + desiredNumber + " is at index " + i);
+        i = sortedArray.length;
+      }
+      else if(desiredNumber<sortedArray[i])
+      {
+        i = i -(i/2);
+      }
+      else if(desiredNumber>sortedArray[i])
+      {
+        i = i + (i/2);
+      }
+      else
+        System.out.println("Sorry that number is not in the array");
+    }
+    printArray();
+  }
+  
+  
+  private void printArray()
+  {
+    for (int i=0; i<sortedArray.length;i++)
+    {
+      System.out.println(sortedArray[i]);
+    }
+  }
+}
+  
+  
+             

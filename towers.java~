@@ -1,0 +1,24 @@
+public class towers
+{
+  private int numOfDisks;
+  private String start;
+  private String support;
+  private String destination;
+  
+  public towers(int n, String st, String alt, String en)
+  {
+    numOfDisks = n;
+    start = st;
+    support = alt;
+    destination = en;
+  }
+  
+  public String solve()
+  {
+    if(numOfDisks == 1)
+      return start + " -> " + destination;
+    
+  }
+  
+  
+}

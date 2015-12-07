@@ -1,0 +1,9 @@
+public class StackException extends Exception 
+{
+ public QueueException() {}
+ 
+ public QueueException(String message)
+ {
+  super(message);
+ }
+}

@@ -1,0 +1,189 @@
+
+public class DLListLinked implements DLList{
+ 
+ private DLLNode head, tail;
+ private int numItems;
+ 
+ 
+ 
+ public void DLLListLinked()
+ {
+  head = null;
+  tail = null;
+  
+ }
+  
+ public boolean isEmpty()
+ {
+  if(numItems==0)
+   return true;
+  else
+   return false;
+ }
+ 
+ 
+ public int size()//Number Of Items in the list
+ {
+  return numItems;
+ }
+ 
+ public boolean add(String item)
+ {
+  DLLNode curr = head;
+  DLLNode prev = null;
+
+  DLLNode newNode = new DLLNode(item);
+  
+  if(head==null) // Adding the first Node to the list
+  {
+   head = newNode;
+   tail = newNode;
+   newNode.next = tail;
+   newNode.prev = head;
+   numItems++;
+   return true;
+  }
+  else
+  {
+   traverseList(curr, newNode, prev, numItems);//TraverseList
+   return true;
+  }
+ }
+ 
+ private DLLNode traverseList(DLLNode curr, DLLNode newNode, DLLNode prev, int numItems)
+ {
+  //System.out.println(curr.item);
+  if(numItems>0)
+  { 
+   if(curr.item.compareTo(newNode.item) > 0 || curr == tail)//checks if current item is greater than new Node item or if current node is equal to tail
+   {
+    if(curr==head && curr.item.compareTo(newNode.item) > 0)
+    {
+     insertBeginning(curr, newNode);
+     return curr;
+    }
+    else if ((curr==tail && curr.item.compareTo(newNode.item) > 0) || curr.item.compareTo(newNode.item) >0) //checks if current node is equal to tail node AND current item is greater than new Node item OR current item is greater than new Node item
+    {
+     insertMiddle(curr, newNode, prev);
+     return curr;
+    }
+    else // last scenario is for current node to equal to tail
+    {
+     insertEnd(curr, newNode);
+     return curr;
+    }
+   }
+   else
+   {
+    traverseList(curr.next, newNode, curr, numItems-1);
+    return curr;
+   }
+  }
+  else
+   return curr;
+ }
+
+ private void insertEnd(DLLNode curr, DLLNode newNode)// Adds new Node to the end of the list
+ {
+  tail = newNode;
+  curr.next.next = newNode;
+  newNode.prev = curr.next;
+  newNode.next = tail;
+  numItems++;
+ }
+ private void insertBeginning(DLLNode curr, DLLNode newNode)//Adds new Node to the beginning of the list
+ {
+  newNode.next = curr;
+  curr.prev = newNode;
+  head = newNode;
+  newNode.prev = head;
+  numItems++;
+  
+ }
+ private void insertMiddle(DLLNode curr, DLLNode newNode, DLLNode prev)//Adds new Node to the middle of the list
+ {
+  prev.next = newNode;
+  curr.prev = newNode;
+  newNode.next = curr;
+  newNode.prev = prev;
+  numItems++;
+ }
+ 
+ public boolean remove() // removes all nodes in the list, by dereferencing and making head equal to null
+ {
+  head = null;
+  return true;
+ }
+ 
+ public boolean remove(String item)
+ {
+  DLLNode curr = head;
+  DLLNode prev = null;
+  
+  int i = numItems;
+  if(isEmpty())
+  {
+   System.out.println("The List is empty");
+   return true;
+  }
+  else if(numItems>0)
+  do{
+   
+   if(curr == head && item.compareTo(curr.item) == 0 && numItems ==1) // Deletes the first (Special Case, if only 1 item in list)
+   {
+    head = null;
+    tail = null;
+    numItems--;
+    return true;
+   }
+   else if(curr == head && item.compareTo(curr.item) == 0) // Delete First node in list
+   {
+    head = curr.next;
+    curr.next.prev = head;
+    numItems--;
+    return true;
+   }
+   else if(curr != tail && item.compareTo(curr.item) == 0) // Delete a node in the middle of the list
+   {
+    prev.next = curr.next;
+    curr.next = curr.prev;
+    curr = null;
+    numItems--;
+    return true;
+   }
+   else if(curr == tail) //Delete a node at the end of the list
+   {
+    tail = prev;
+    prev.next = tail;
+    curr = null;
+    numItems--;
+    return true;
+   }
+   prev = curr;
+   curr = curr.next;
+   i--;
+  }while(i>0);
+  else
+  {
+   System.out.println("Sorry, the string you are trying to delete is currently not in the list.");
+   return false;
+  }
+  return false; 
+ }
+ 
+ public void display() {
+        DLLNode curr = head;
+        int i = numItems;
+
+        if (curr == null) {
+            System.out.println("The list is empty!");
+            return;
+        }
+
+        do {
+            System.out.print(curr.item);
+            curr = curr.next;
+            i--;
+        } while (i>0);
+ }
+}

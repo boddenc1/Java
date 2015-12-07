@@ -1,0 +1,16 @@
+public class palindromeFun
+{
+  String inputString;
+  
+  
+  public palindromeFun(String s)
+  {
+    inputString = s;
+  }
+  
+  public boolean isPalindrome()
+  {
+    char [] Array = new char[inputString.length()];
+  }
+  
+}
